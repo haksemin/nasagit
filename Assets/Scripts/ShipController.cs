@@ -6,8 +6,8 @@ public class ShipController : MonoBehaviour
 {
     public float rotationSpeed = 50.0f;
     public float moveSpeed = 10.0f;
-    public float maxRotationX = 45.0f; // Maksimum eðilme açýsý
-    public float minRotationX = -45.0f; // Minimum eðilme açýsý
+    public float maxRotationX = 45.0f; // Maksimum eï¿½ilme aï¿½ï¿½sï¿½
+    public float minRotationX = -45.0f; // Minimum eï¿½ilme aï¿½ï¿½sï¿½
     public float verticalSpeed = 5.0f;
 
     Rigidbody rb;
@@ -19,19 +19,19 @@ public class ShipController : MonoBehaviour
     {
         if (GetShip.isInShip)
         {
-            // A ve D tuþlarýna göre saða ve sola dönme
+            // A ve D tuï¿½larï¿½na gï¿½re saï¿½a ve sola dï¿½nme
             RotateSideways();
 
-            // Ok yukarý ve aþaðý tuþlarýyla yukarý ve aþaðý eðilme
+            // Ok yukarï¿½ ve aï¿½aï¿½ï¿½ tuï¿½larï¿½yla yukarï¿½ ve aï¿½aï¿½ï¿½ eï¿½ilme
             TiltUpDownWithArrowKeys();
 
-            // W tuþuna basýldýðýnda ileri gitme
+            // W tuï¿½una basï¿½ldï¿½ï¿½ï¿½nda ileri gitme
             MoveForward();
 
-            // Ctrl tuþuna basýldýðýnda alçalma
+            // Ctrl tuï¿½una basï¿½ldï¿½ï¿½ï¿½nda alï¿½alma
             Descend();
 
-            // Space tuþuna basýldýðýnda yükselme
+            // Space tuï¿½una basï¿½ldï¿½ï¿½ï¿½nda yï¿½kselme
             Ascend();
         }
        
@@ -39,34 +39,34 @@ public class ShipController : MonoBehaviour
 
     void RotateSideways()
     {
-        // A tuþuna basýldýðýnda sola, D tuþuna basýldýðýnda saða dönme
+        // A tuï¿½una basï¿½ldï¿½ï¿½ï¿½nda sola, D tuï¿½una basï¿½ldï¿½ï¿½ï¿½nda saï¿½a dï¿½nme
         float horizontalInput = Input.GetAxis("Horizontal");
         float rotationY = transform.rotation.eulerAngles.y + horizontalInput * rotationSpeed * Time.deltaTime;
 
         float rotationX = transform.rotation.eulerAngles.x;
 
-        // Sýnýrlarý kontrol et
+        // Sï¿½nï¿½rlarï¿½ kontrol et
         if (rotationX > 180.0f)
         {
             rotationX -= 360.0f;
         }
 
-        rotationX = Mathf.Clamp(rotationX, minRotationX, maxRotationX); // Eðilme açýsýný sýnýrla
+        rotationX = Mathf.Clamp(rotationX, minRotationX, maxRotationX); // Eï¿½ilme aï¿½ï¿½sï¿½nï¿½ sï¿½nï¿½rla
 
         transform.rotation = Quaternion.Euler(rotationX, rotationY, 0.0f);
     }
 
     void TiltUpDownWithArrowKeys()
     {
-        // Ok yukarý tuþuyla yukarý eðilme
+        // Ok yukarï¿½ tuï¿½uyla yukarï¿½ eï¿½ilme
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            TiltUpDown(-1); // Eðilme deðerini azalt
+            TiltUpDown(-1); // Eï¿½ilme deï¿½erini azalt
         }
-        // Ok aþaðý tuþuyla aþaðý eðilme
+        // Ok aï¿½aï¿½ï¿½ tuï¿½uyla aï¿½aï¿½ï¿½ eï¿½ilme
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            TiltUpDown(1); // Eðilme deðerini artýr
+            TiltUpDown(1); // Eï¿½ilme deï¿½erini artï¿½r
         }
     }
 
@@ -74,20 +74,20 @@ public class ShipController : MonoBehaviour
     {
         float rotationX = transform.rotation.eulerAngles.x + direction * rotationSpeed * Time.deltaTime;
 
-        // Sýnýrlarý kontrol et
+        // Sï¿½nï¿½rlarï¿½ kontrol et
         if (rotationX > 180.0f)
         {
             rotationX -= 360.0f;
         }
 
-        rotationX = Mathf.Clamp(rotationX, minRotationX, maxRotationX); // Eðilme açýsýný sýnýrla
+        rotationX = Mathf.Clamp(rotationX, minRotationX, maxRotationX); // Eï¿½ilme aï¿½ï¿½sï¿½nï¿½ sï¿½nï¿½rla
         float rotationZ = transform.rotation.eulerAngles.z; // Z eksenindeki rotasyonu koru
         transform.rotation = Quaternion.Euler(rotationX, transform.rotation.eulerAngles.y, rotationZ);
     }
 
     void MoveForward()
     {
-        // W tuþuna basýldýðýnda ileri gitme
+        // W tuï¿½una basï¿½ldï¿½ï¿½ï¿½nda ileri gitme
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
@@ -100,7 +100,7 @@ public class ShipController : MonoBehaviour
 
     void Descend()
     {
-        // Ctrl tuþuna basýldýðýnda alçalma
+        // Ctrl tuï¿½una basï¿½ldï¿½ï¿½ï¿½nda alï¿½alma
         if (Input.GetKey(KeyCode.LeftControl))
         {
             transform.Translate(Vector3.down * verticalSpeed * Time.deltaTime);
@@ -109,7 +109,7 @@ public class ShipController : MonoBehaviour
 
     void Ascend()
     {
-        // Space tuþuna basýldýðýnda yükselme
+        // Space tuï¿½una basï¿½ldï¿½ï¿½ï¿½nda yï¿½kselme
         if (Input.GetKey(KeyCode.Space))
         {
             transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime);
