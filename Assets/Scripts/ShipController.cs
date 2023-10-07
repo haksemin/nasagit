@@ -10,6 +10,11 @@ public class ShipController : MonoBehaviour
     public float minRotationX = -45.0f; // Minimum eðilme açýsý
     public float verticalSpeed = 5.0f;
 
+    Rigidbody rb;
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     void Update()
     {
         if (GetShip.isInShip)
@@ -86,6 +91,10 @@ public class ShipController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            rb.velocity = Vector3.zero;
         }
     }
 
