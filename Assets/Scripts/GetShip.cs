@@ -6,6 +6,7 @@ public class GetShip : MonoBehaviour
 {
     public Transform shipPosition,characterPosition;
     public GameObject FpsCharacter, TpsCamera , info;
+    public GameObject dayi, nitro;
     public static bool isInShip = false;
     void Start()
     {
@@ -23,7 +24,7 @@ public class GetShip : MonoBehaviour
         {
             info.SetActive(true);
         }
-        if(isInShip || !ShipKey.canGetShip)
+        else if(isInShip || !ShipKey.canGetShip)
         {
             info.SetActive(false);
         }
@@ -38,6 +39,8 @@ public class GetShip : MonoBehaviour
                 {
                     FpsCharacter.SetActive(false);
                     TpsCamera.SetActive(true);
+                    dayi.SetActive(true);
+                    nitro.SetActive(true);
                     shipPosition.GetComponent<Rigidbody>().useGravity = false;
                     isInShip = true;
                     
@@ -49,6 +52,8 @@ public class GetShip : MonoBehaviour
                 TpsCamera.SetActive(false);
                 characterPosition.position = new Vector3(shipPosition.position.x, shipPosition.position.y+5f , shipPosition.position.z);
                 FpsCharacter.SetActive(true);
+                dayi.SetActive(false);
+                nitro.SetActive(false);
                 shipPosition.GetComponent<Rigidbody>().useGravity = true;
                 isInShip = false;
             }
