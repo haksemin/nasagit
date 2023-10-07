@@ -16,7 +16,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
         [SerializeField] private float m_JumpSpeed;
         [SerializeField] private float m_StickToGroundForce;
-        [SerializeField] private float m_GravityMultiplier;
+                         public float m_GravityMultiplier;
         [SerializeField] private MouseLook m_MouseLook;
         [SerializeField] private bool m_UseFovKick;
         [SerializeField] private FOVKick m_FovKick = new FOVKick();
@@ -55,12 +55,31 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+
+            gravityIsMoon = true;
         }
 
-
+        bool gravityIsMoon ;
+        void Gravity()
+        {
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                if (!gravityIsMoon)
+                {
+                    m_GravityMultiplier = 0.2f;
+                    gravityIsMoon = true;
+                }
+                else
+                {
+                    gravityIsMoon = false;
+                    m_GravityMultiplier = 2f;
+                }
+            }
+        }
         // Update is called once per frame
         private void Update()
         {
+            Gravity();
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)

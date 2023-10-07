@@ -23,7 +23,7 @@ public class GetShip : MonoBehaviour
         {
             info.SetActive(true);
         }
-        else
+        if(isInShip || !ShipKey.canGetShip)
         {
             info.SetActive(false);
         }
